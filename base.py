@@ -38,7 +38,6 @@ def usernameSet():
 
 def username(uname):
     speak("Bienvenido")
-    print(uname)
     columns = shutil.get_terminal_size().columns
      
     print("#####################".center(columns))

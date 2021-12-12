@@ -83,9 +83,19 @@ if __name__ == '__main__':
                         str(current_temperature))
                 speak("La temperatura en " + query + "es" + str(current_temperature) + "°")
             else: 
-                print(" City Not Found ") 
+                print("No encuentro esa ciudad") 
 
-        elif 'the time' in query:
+        elif "qué es" in query or "quien es" in query:
+
+            client = wolframalpha.Client("AU24P2-2WKAEV7VUT")
+            res = client.query(query)
+            try:
+                print (next(res.results).text)
+                speak (next(res.results).text)
+            except StopIteration:
+                print ("No results")
+
+        elif 'la hora' in query or "qué hora es" in query:
             strTime = datetime.datetime.now().strftime("% H:% M:% S")   
             speak(f"Sir, the time is {strTime}")
 
@@ -169,29 +179,38 @@ if __name__ == '__main__':
             query = query.replace("search", "")
             query = query.replace("play", "")         
             webbrowser.open(query)
+
         elif "who i am" in query:
             speak("If you talk then definitely your human.")
+
         elif "why you came to world" in query:
             speak("Thanks to Gaurav. further It's a secret")
+
         elif 'power point presentation' in query:
             speak("opening Power Point presentation")
             power = r"C:\\Users\\GAURAV\\Desktop\\Minor Project\\Presentation\\Voice Assistant.pptx"
             os.startfile(power)
+
         elif 'is love' in query:
             speak("It is 7th sense that destroy all other senses")
+
         elif "who are you" in query:
             speak("I am your virtual assistant created by Gaurav")
+
         elif 'reason for you' in query:
             speak("I was created as a Minor project by Mister Gaurav ")
+
         elif 'change background' in query:
             ctypes.windll.user32.SystemParametersInfoW(20,
                                                        0,
                                                        "Location of wallpaper",
                                                        0)
             speak("Background changed successfully")
+
         elif 'open bluestack' in query:
             appli = r"C:\\ProgramData\\BlueStacks\\Client\\Bluestacks.exe"
             os.startfile(appli)
+
         elif 'news' in query:
             try:
                 jsonObj = urlopen('''https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\''')
@@ -206,35 +225,44 @@ if __name__ == '__main__':
                     i += 1
             except Exception as e:
                 print(str(e))
+
         elif 'lock window' in query:
                 speak("locking the device")
                 ctypes.windll.user32.LockWorkStation()
+
         elif 'shutdown system' in query:
                 speak("Hold On a Sec ! Your system is on its way to shut down")
                 subprocess.call('shutdown / p /f')
+
         elif 'empty recycle bin' in query:
             winshell.recycle_bin().empty(confirm = False, show_progress = False, sound = True)
             speak("Recycle Bin Recycled")
+
         elif "don't listen" in query or "stop listening" in query:
             speak("for how much time you want to stop jarvis from listening commands")
             a = int(takeCommand())
             time.sleep(a)
             print(a)
+
         elif "where is" in query:
             query = query.replace("where is", "")
             location = query
             speak("User asked to Locate")
             speak(location)
             webbrowser.open("https://www.google.nl / maps / place/" + location + "")
+
         elif "restart" in query:
             subprocess.call(["shutdown", "/r"])
+
         elif "hibernate" in query or "sleep" in query:
             speak("Hibernating")
             subprocess.call("shutdown / h")
+
         elif "log off" in query or "sign out" in query:
             speak("Make sure all the application are closed before sign-out")
             time.sleep(5)
             subprocess.call(["shutdown", "/l"])
+
         elif "write a note" in query:
             speak("What should i write, sir")
             note = takeCommand()
@@ -263,32 +291,13 @@ if __name__ == '__main__':
                                        expected_size =(total_length / 1024) + 1):
                     if ch:
                       Pypdf.write(ch)
+
         # NPPR9-FWDCX-D2C8J-H872K-2YT43
         elif "jarvis" in query:
             wishMe()
-            speak("Jarvis 1 point o in your service Mister")
+            speak("")
             speak(assname)
-        elif "weather" in query:
-            # Google Open weather website
-            # to get API of Open weather
-            api_key = "Api key"
-            base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
-            speak(" City name ")
-            print("City name : ")
-            city_name = takeCommand()
-            complete_url = base_url + "appid =" + api_key + "&q =" + city_name
-            response = requests.get(complete_url)
-            x = response.json()
-            if x["cod"] != "404":
-                y = x["main"]
-                current_temperature = y["temp"]
-                current_pressure = y["pressure"]
-                current_humidiy = y["humidity"]
-                z = x["weather"]
-                weather_description = z[0]["description"]
-                print(" Temperature (in kelvin unit) = " +str(current_temperature)+"\n atmospheric pressure (in hPa unit) ="+str(current_pressure) +"\n humidity (in percentage) = " +str(current_humidiy) +"\n description = " +str(weather_description))
-            else:
-                speak(" City Not Found ")
+
         elif "send message " in query:
                 # You need to create an account on Twilio to use this service
                 account_sid = 'Account Sid key'
@@ -301,12 +310,7 @@ if __name__ == '__main__':
                                     to ='Receiver No'
                                 )
                 print(message.sid)
-        elif "wikipedia" in query:
-            webbrowser.open("wikipedia.com")
-        elif "Good Morning" in query:
-            speak("A warm" +query)
-            speak("How are you Mister")
-            speak(assname)
+
         # most asked question from google Assistant
         elif "will you be my gf" in query or "will you be my bf" in query:  
             speak("I'm not sure about, may be you should give me some time")
@@ -314,16 +318,7 @@ if __name__ == '__main__':
             speak("I'm fine, glad you me that")
         elif "i love you" in query:
             speak("It's hard to understand")
-        elif "what is" in query or "who is" in query:
-            # Use the same API key
-            # that we have generated earlier
-            client = wolframalpha.Client("API_ID")
-            res = client.query(query)
-            try:
-                print (next(res.results).text)
-                speak (next(res.results).text)
-            except StopIteration:
-                print ("No results")
+        
         # elif "" in query:
             # Command go here
             # For adding more commands
