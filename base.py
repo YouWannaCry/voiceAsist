@@ -1,12 +1,19 @@
 from requirements import *
+from settings import *
 
-##############################################
-##                Engine                    ##
-engine = pyttsx3.init('sapi5')              ##
-voices = engine.getProperty('voices')       ##
-engine.setProperty('voice', voices[0].id)   ##
-webbrowser.register("operagx",None,webbrowser.BackgroundBrowser("C://Users//arodr//AppData//Local//Programs//Opera GX//launcher.exe"),preferred=True)
-##############################################
+#########################################################################
+##                              Engine                                 ##
+engine = pyttsx3.init('sapi5')                                         ##
+voices = engine.getProperty('voices')                                  ##
+engine.setProperty('voice', voices[0].id)                              ##
+webbrowser.register(                                                   ##
+"operagx",                                                             ##
+None,                                                                  ##
+webbrowser.BackgroundBrowser(                                          ##
+"C://Users//arodr//AppData//Local//Programs//Opera GX//launcher.exe"), ##
+preferred=True)                                                        ##
+config.encoding = 'cp1251'                                             ##
+#########################################################################
 
 ##Funciones##
 def speak(audio):
@@ -59,7 +66,7 @@ def takeCommand():
     try:
         print("Pensando...")   
         query = r.recognize_google(audio, language ='es-AR')
-        print(f"User said: {query}/n")
+        print(f"El usuario dijo: {query}")
   
     except Exception as e:
         print(e)   
@@ -84,3 +91,9 @@ def sendEmail(to, content):
     server.login('Tu email', p)
     server.sendmail('Tu email', to, content)
     server.close()
+
+    #Prueba del agregado de "secrets" para mantener seguras las cuentas, unames, assname, etc
+    #user = config('user', default='')
+    #password = config('password', default='')
+    #if user != '' and password != '':
+    #   connect(user, password)

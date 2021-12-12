@@ -1,7 +1,7 @@
 if __name__ == '__main__':
     clear = lambda: os.system('cls')
     from base import *
-
+    
     # This Function will clean any
     # command before execution of this python file
 
