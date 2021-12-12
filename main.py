@@ -51,14 +51,36 @@ if __name__ == '__main__':
         elif 'abrir stackoverflow' in query:
             speak("Here you go to Stack Over flow.Happy coding")
             webbrowser.open("stackoverflow.com")  
+
+        elif 'clima de' in query or 'clima en' in query:
+            speak("Buscando el" + query)
+            query = query.replace("clima de", "")
+            query = query.replace("clima en", "")
+            api_key = "259e98e1e792bbfd0138c383c0163792"
+            urlClima = ("http://api.openweathermap.org/data/2.5/weather?")
+            complete_url = urlClima + "appid=" + api_key + "&q=" + query + "&units=metric"
+            response = requests.get(complete_url)
+            x = response.json()
+            if x["cod"] != "404": 
+                y = x["main"] 
+                current_temperature = y["temp"]
+                z = x["weather"] 
+                weather_description = z[0]["description"]
+                print("Temperatura= " +
+                        str(current_temperature))
+                speak("La temperatura en " + query + "es" + str(current_temperature) + "grados celsius")
+            else: 
+                print(" City Not Found ") 
  
-        elif 'pon musica' in query or "reproducir musica" in query:
-            speak("Aca va ese temardo bro")
-            # music_dir = "G:\\Song"
-            music_dir = "C:\\Users\\GAURAV\\Music"
-            songs = os.listdir(music_dir)
-            print(songs)   
-            random = os.startfile(os.path.join(music_dir, songs[1]))
+#        elif 'pon musica' in query or "reproducir musica" in query:
+#            speak("Aca va ese temardo bro")
+#            # music_dir = "G:\\Song"
+#            music_dir = "C:\\Users\\GAURAV\\Music"
+#            songs = os.listdir(music_dir)
+#            print(songs)   
+#            random = os.startfile(os.path.join(music_dir, songs[1]))
+
+
  
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("% H:% M:% S")   
