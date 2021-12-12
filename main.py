@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 weather_description = z[0]["description"]
                 print("Temperatura= " +
                         str(current_temperature))
-                speak("La temperatura en " + query + "es" + str(current_temperature) + "grados celsius")
+                speak("La temperatura en " + query + "es" + str(current_temperature) + "°")
             else: 
                 print(" City Not Found ") 
  
