@@ -23,6 +23,7 @@ from clint.textui import progress
 from bs4 import BeautifulSoup
 import win32com.client as wincl
 from urllib.request import urlopen
+import getpass as gp
 
 ##############################################
 ##                Engine                    ##
@@ -50,6 +51,7 @@ def wishMe():
   
     assname =("Jarvis")
     speak("Soy tu asistente" + assname)
+    return assname
 
 def usernameSet():
     speak("Como deberia llamarte?")
@@ -93,8 +95,15 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-     
+
+    try:
+        p = gp.getpass()
+    except Exception as error:
+        print('ERROR', error)
+    else:
+        print('Password entered')
+    
     # Enable low security in gmail
-    server.login('Tu email', 'Tu password')
+    server.login('Tu email', p)
     server.sendmail('Tu email', to, content)
     server.close()

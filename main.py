@@ -7,7 +7,7 @@ if __name__ == '__main__':
     # This Function will clean any
     # command before execution of this python file
     clear()
-    wishMe()
+    assname = wishMe()
     if (uname == None):
         usernameSet()
     else:
@@ -33,17 +33,27 @@ if __name__ == '__main__':
         elif 'abrir youtube' in query:
             speak("Abriendo Youtube")
             webbrowser.open("youtube.com")
- 
-        elif 'open google' in query:
+
+        elif 'buscar en youtube' in query:
+            speak("Buscando en Youtube")
+            query = query.replace("buscar en youtube", "")
+            webbrowser.open("https://www.youtube.com/results?search_query=" + query)
+
+        elif 'abrir google' in query:
             speak("Here you go to Google")
             webbrowser.open("google.com")
- 
-        elif 'open stackoverflow' in query:
+        
+        elif 'buscar en google' in query:
+            speak("Buscando en Google. Te sientes con suerte?")
+            query = query.replace("buscar en google", "")
+            webbrowser.open("https://www.google.com/search?q=" + query)
+
+        elif 'abrir stackoverflow' in query:
             speak("Here you go to Stack Over flow.Happy coding")
             webbrowser.open("stackoverflow.com")  
  
-        elif 'play music' in query or "play song" in query:
-            speak("Here you go with music")
+        elif 'pon musica' in query or "reproducir musica" in query:
+            speak("Aca va ese temardo bro")
             # music_dir = "G:\\Song"
             music_dir = "C:\\Users\\GAURAV\\Music"
             songs = os.listdir(music_dir)
@@ -88,28 +98,28 @@ if __name__ == '__main__':
         elif 'fine' in query or "good" in query:
             speak("It's good to know that your fine")
  
-        elif "change my name to" in query:
-            query = query.replace("change my name to", "")
-            assname = query
+        elif "cambia mi nombre a" in query:
+            query = query.replace("cambia mi nombre a", "")
+            uname = query
  
-        elif "change name" in query:
-            speak("What would you like to call me, Sir ")
+        elif "cambiar nombre" in query:
+            speak("Como te gustaria que me llame?")
             assname = takeCommand()
-            speak("Thanks for naming me")
+            speak("Gracias por darme un nombre")
  
-        elif "what's your name" in query or "What is your name" in query:
-            speak("My friends call me")
+        elif "dime tu nombre" in query:
+            speak("Mis amigos me llaman")
             speak(assname)
-            print("My friends call me", assname)
+            print("Mis amigos me llaman", assname)
  
-        elif 'exit' in query:
-            speak("Thanks for giving me your time")
+        elif 'salir' in query:
+            speak("Gracias por usar mis servicios")
             exit()
  
-        elif "who made you" in query or "who created you" in query:
-            speak("I have been created by Gaurav.")
+        elif "creadores" in query:
+            speak("Me crearon YouWannaCry, Bisdro, y Naju Testeando.")
              
-        elif 'joke' in query:
+        elif 'chiste' in query:
             speak(pyjokes.get_joke())
              
         elif "calculate" in query:
