@@ -32,7 +32,7 @@ if __name__ == '__main__':
  
         elif 'abrir youtube' in query:
             speak("Abriendo Youtube")
-            webbrowser.get("open -a C:/Users/arodr/AppData/Local/Programs/Opera GX/launcher.exe ").open("youtube.com")
+            webbrowser.open("youtube.com")
  
         elif 'open google' in query:
             speak("Here you go to Google")

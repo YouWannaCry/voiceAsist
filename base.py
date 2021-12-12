@@ -29,6 +29,7 @@ from urllib.request import urlopen
 engine = pyttsx3.init('sapi5')              ##
 voices = engine.getProperty('voices')       ##
 engine.setProperty('voice', voices[0].id)   ##
+webbrowser.register("operagx",None,webbrowser.BackgroundBrowser("C://Users//arodr//AppData//Local//Programs//Opera GX//launcher.exe"),preferred=True)
 ##############################################
 
 ##Funciones##
