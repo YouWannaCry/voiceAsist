@@ -1,30 +1,4 @@
-import subprocess
-import wolframalpha
-import pyttsx3
-import tkinter
-import json
-import random
-import operator
-import speech_recognition as sr
-import datetime
-import wikipedia
-import webbrowser
-import os
-import winshell
-import pyjokes
-import feedparser
-import smtplib
-import ctypes
-import time
-import requests
-import json
-import shutil
-from twilio.rest import Client
-from clint.textui import progress
-from bs4 import BeautifulSoup
-import win32com.client as wincl
-from urllib.request import urlopen
-import getpass as gp
+from requirements import *
 
 ##############################################
 ##                Engine                    ##
@@ -41,17 +15,20 @@ def speak(audio):
  
 def wishMe():
     hour = int(datetime.datetime.now().hour)
-    if hour>= 0 and hour<12:
-        speak("Buen dia!")
+    if hour>= 6 and hour<13:
+        speak("Buen día!")
   
-    elif hour>= 12 and hour<18:
-        speak("Buenas tardes!")  
-  
+    elif hour>= 13 and hour<19:
+        speak("Buenas tardes!") 
+
     else:
         speak("Buenas noches!") 
   
-    assname =("Jarvis")
-    speak("Soy tu asistente" + assname)
+    assname = ("diego")
+    print("Soy tu asistente " + assname)
+    speak("Soy tu asistente " + assname)
+    print("Estare en descanso hasta que digas mi nombre!")
+    speak("Estare en descanso hasta que digas mi nombre!")
     return assname
 
 def usernameSet():
@@ -61,11 +38,11 @@ def usernameSet():
 
 def username(uname):
     speak("Bienvenido")
-    speak(uname)
+    print(uname)
     columns = shutil.get_terminal_size().columns
      
     print("#####################".center(columns))
-    print('Hola, como estas hoy? uname'.center(columns))
+    print('Hola, como estas hoy?'.center(columns))
     print("#####################".center(columns))
      
     speak("Como puedo ayudarte hoy?")
