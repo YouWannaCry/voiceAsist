@@ -1,5 +1,5 @@
 from requirements import *
-from settings import *
+from config import *
 
 #########################################################################
 ##                              Engine                                 ##
@@ -31,7 +31,7 @@ def wishMe():
     else:
         speak("Buenas noches!") 
   
-    assname = ("diego")
+    assname = ("yarbiss")
     print("Soy tu asistente " + assname)
     speak("Soy tu asistente " + assname)
     print("Estare en descanso hasta que digas mi nombre!")
@@ -48,7 +48,7 @@ def username(uname):
     columns = shutil.get_terminal_size().columns
      
     print("#####################".center(columns))
-    print('Hola, como estas hoy?'.center(columns))
+    print(f'Hola {uname}, como estas hoy?'.center(columns))
     print("#####################".center(columns))
      
     speak("Como puedo ayudarte hoy?")
@@ -75,23 +75,6 @@ def takeCommand():
      
     return query
   
-def sendEmail(to, content):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-
-    try:
-        p = gp.getpass()
-    except Exception as error:
-        print('ERROR', error)
-    else:
-        print('Password entered')
-    
-    # Enable low security in gmail
-    server.login('Tu email', p)
-    server.sendmail('Tu email', to, content)
-    server.close()
-
     #Prueba del agregado de "secrets" para mantener seguras las cuentas, unames, assname, etc
     #user = config('user', default='')
     #password = config('password', default='')

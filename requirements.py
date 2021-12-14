@@ -29,4 +29,3 @@ from time import sleep
 from platform import uname
 import pyautogui
 from decouple import config
-from connect import *
